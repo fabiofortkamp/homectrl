@@ -14,11 +14,10 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; General remapping script for AutoHotkey
 
-; The behaviour is such that the control keys are located on the home
-; row. CapsLock and Enter serve as Control, but with one detail: when
-; pressed alone (fast enough), they have a different behaviour. When
-; CapsLock is pressed fast, it behaves as a Escape key, and when Enter
-; is pressed fast enough, it send the normal Enter key
+; The behaviour is such that the control key is located on the home
+; row. CapsLock serve as Control, but with one detail: when
+; pressed alone (fast enough), it has a different behaviour. When
+; CapsLock is pressed fast, it behaves as a Escape key
 
 ; These ideas came from three blog posts, targeted at Mac users:
 ; 
@@ -26,7 +25,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; http://brettterpstra.com/2012/12/08/a-useful-caps-lock-key/
 ; http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
 
-; The basic algorith come from this discussion:
+; The basic algorithm come from this discussion:
 ; https://superuser.com/questions/223831/remap-a-key-depending-on-whether-it-was-pressed-alone-or-not
 
 ; The limit for 'fast enough' is 150 ms, but this may change
@@ -47,18 +46,7 @@ Else
 return
 return
 
-; remap Enter+Something to Ctrl+Something, but Enter alone does nothing
-Enter::RCtrl
 
-Enter Up::
-SendInput, {RControl Up}  ;--For stability
-If A_TimeSincePriorHotkey < 150
-{
-  SendInput, {Enter}   
-}
-Else
-return
-return
 
 
 
